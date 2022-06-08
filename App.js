@@ -7,7 +7,7 @@ export default function App() {
   return (
     <SafeAreaView>
       <CategoryScreen />
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
