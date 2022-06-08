@@ -7,9 +7,11 @@ import {
   Pressable,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const MealItem = ({ item }) => {
+const MealItem = ({ item, categoryColor }) => {
   const { title, duration, complexity, affordability, imageUrl } = item;
+  const navigation = useNavigation();
   return (
     <Pressable
       android_ripple={{ color: "#ccc" }}
@@ -17,6 +19,12 @@ const MealItem = ({ item }) => {
         styles.container,
         pressed ? styles.pressed : null,
       ]}
+      onPress={() => {
+        navigation.navigate("MealDetails", {
+          item: item,
+          categoryColor: categoryColor,
+        });
+      }}
     >
       <View style={styles.infoContainer}>
         <View style={styles.infoText}>

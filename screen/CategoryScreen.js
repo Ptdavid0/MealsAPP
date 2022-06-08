@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/mockData";
 
@@ -27,7 +27,5 @@ const CategoryScreen = ({ navigation }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default CategoryScreen;
