@@ -36,7 +36,7 @@ const MealDetailsScreen = ({ route, navigation }) => {
           </View>
           <View style={styles.infoTextContainer}>
             <View style={[styles.infoText, { backgroundColor: categoryColor }]}>
-              <Text>{duration}</Text>
+              <Text>{duration}m</Text>
             </View>
 
             <View style={[styles.infoText, { backgroundColor: categoryColor }]}>
@@ -44,7 +44,7 @@ const MealDetailsScreen = ({ route, navigation }) => {
             </View>
 
             <View style={[styles.infoText, { backgroundColor: categoryColor }]}>
-              <Text>{affordability}</Text>
+              <Text>{affordability.toUpperCase()}</Text>
             </View>
           </View>
           <View style={styles.ingredientsContainer}>
@@ -60,7 +60,6 @@ const MealDetailsScreen = ({ route, navigation }) => {
               ))}
             </View>
           </View>
-
           <View style={styles.stepsContainer}>
             <View>
               <Text style={styles.stepsTitle}>Steps : </Text>
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
+    paddingBottom: 30,
   },
   imageContainer: {
     flex: 1,
