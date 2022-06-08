@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from "react";
-import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
+import { View, Text, ScrollView, Image, StyleSheet, Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import IconButton from "../components/IconButton";
 
 const MealDetailsScreen = ({ route, navigation }) => {
   const {
@@ -15,11 +16,26 @@ const MealDetailsScreen = ({ route, navigation }) => {
 
   const { categoryColor } = route.params;
 
+  const headerButtonPressHandler = () => {
+    Alert.alert("Header button pressed!");
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: title,
       headerStyle: {
         backgroundColor: categoryColor,
+      },
+      headerRight: () => {
+        return (
+          <View>
+            <IconButton
+              onPress={headerButtonPressHandler}
+              icon={"star"}
+              color={"white"}
+            />
+          </View>
+        );
       },
     });
   }, [navigation]);
