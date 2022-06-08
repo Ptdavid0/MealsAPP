@@ -3,9 +3,17 @@ import { View, FlatList, StyleSheet } from "react-native";
 import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/mockData";
 
-const CategoryScreen = () => {
+const CategoryScreen = ({ navigation }) => {
+  const handleSelectCategory = (item) => {
+    navigation.navigate("MealsOverview", {
+      categoryId: item.id,
+      categoryTitle: item.title,
+      categoryColor: item.color,
+    });
+  };
+
   const renderCategoryItem = ({ item }) => {
-    return <CategoryGridTile title={item.title} color={item.color} />;
+    return <CategoryGridTile item={item} onSelect={handleSelectCategory} />;
   };
   return (
     <View>

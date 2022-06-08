@@ -1,6 +1,5 @@
 {
   "expo": {
-    "backgroundColor": "#24180f",
     "name": "mealsApp",
     "slug": "mealsApp",
     "version": "1.0.0",
