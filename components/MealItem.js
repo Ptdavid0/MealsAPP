@@ -12,6 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 const MealItem = ({ item, categoryColor }) => {
   const { title, duration, complexity, affordability, imageUrl } = item;
   const navigation = useNavigation();
+
+  const handleSelectMeal = () => {
+    navigation.navigate("MealDetails", {
+      item: item,
+      categoryColor: categoryColor,
+    });
+  };
+
   return (
     <Pressable
       android_ripple={{ color: "#ccc" }}
@@ -19,12 +27,7 @@ const MealItem = ({ item, categoryColor }) => {
         styles.container,
         pressed ? styles.pressed : null,
       ]}
-      onPress={() => {
-        navigation.navigate("MealDetails", {
-          item: item,
-          categoryColor: categoryColor,
-        });
-      }}
+      onPress={handleSelectMeal}
     >
       <View style={styles.infoContainer}>
         <View style={styles.infoText}>
