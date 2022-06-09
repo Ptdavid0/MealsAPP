@@ -8,6 +8,7 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 const MealItem = ({ item, categoryColor }) => {
   const { title, duration, complexity, affordability, imageUrl } = item;
@@ -31,16 +32,25 @@ const MealItem = ({ item, categoryColor }) => {
     >
       <View style={styles.infoContainer}>
         <View style={styles.infoText}>
-          <Text>{title}</Text>
+          <Text style={styles.dataTitle}>{title}</Text>
         </View>
-        <View style={styles.infoText}>
-          <Text>{complexity}</Text>
+        <View style={styles.dataContainer}>
+          <FontAwesome name="circle" size={12} color={categoryColor} />
+          <Text style={styles.dataText} a>
+            {complexity.toUpperCase()}
+          </Text>
         </View>
-        <View style={styles.infoText}>
-          <Text>{duration}</Text>
+        <View style={styles.dataContainer}>
+          <FontAwesome name="circle" size={12} color={categoryColor} />
+          <Text style={styles.dataText} a>
+            {duration}m
+          </Text>
         </View>
-        <View style={styles.infoText}>
-          <Text>{affordability}</Text>
+        <View style={styles.dataContainer}>
+          <FontAwesome name="circle" size={12} color={categoryColor} />
+          <Text style={styles.dataText} a>
+            {affordability.toUpperCase()}
+          </Text>
         </View>
       </View>
       <View style={styles.imageContainer}>
@@ -94,6 +104,19 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     borderRadius: 10,
+  },
+  dataContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  dataText: {
+    fontSize: 12,
+    marginHorizontal: 5,
+  },
+  dataTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
