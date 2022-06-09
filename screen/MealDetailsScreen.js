@@ -1,9 +1,12 @@
-import React, { useLayoutEffect } from "react";
-import { View, Text, ScrollView, Image, StyleSheet, Alert } from "react-native";
+import React, { useLayoutEffect, useContext } from "react";
+import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/context/favoritesContext";
 
 const MealDetailsScreen = ({ route, navigation }) => {
+  const favoritesMealsContext = useContext(FavoritesContext);
+
   const {
     title,
     duration,
@@ -12,12 +15,18 @@ const MealDetailsScreen = ({ route, navigation }) => {
     imageUrl,
     ingredients,
     steps,
+    id,
   } = route.params.item;
-
   const { categoryColor } = route.params;
 
-  const headerButtonPressHandler = () => {
-    Alert.alert("Header button pressed!");
+  const mealIsFavorite = favoritesMealsContext.favoritesIds.includes(id);
+
+  const changeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      favoritesMealsContext.removeFavorite(id);
+    } else {
+      favoritesMealsContext.addFavorite(id);
+    }
   };
 
   useLayoutEffect(() => {
@@ -30,15 +39,15 @@ const MealDetailsScreen = ({ route, navigation }) => {
         return (
           <View>
             <IconButton
-              onPress={headerButtonPressHandler}
-              icon={"star"}
+              onPress={changeFavoriteStatusHandler}
+              icon={mealIsFavorite ? "star" : "star-outline"}
               color={"white"}
             />
           </View>
         );
       },
     });
-  }, [navigation]);
+  }, [navigation, mealIsFavorite, changeFavoriteStatusHandler]);
 
   return (
     <View style={styles.container}>

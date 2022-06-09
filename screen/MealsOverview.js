@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import MealItem from "../components/MealItem";
+import MealsList from "../components/MealsList";
 import { MEALS } from "../data/mockData";
 
 const MealsOverviewScreen = ({ route, navigation }) => {
@@ -21,13 +22,7 @@ const MealsOverviewScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        renderItem={({ item }) => (
-          <MealItem item={item} categoryColor={categoryColor} />
-        )}
-        keyExtractor={(item) => item.id}
-      />
+      <MealsList data={displayedMeals} categoryColor={categoryColor} />
     </View>
   );
 };

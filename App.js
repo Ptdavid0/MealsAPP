@@ -9,6 +9,7 @@ import MealDetailsScreen from "./screen/MealDetailsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FavoriteScreen from "./screen/FavoriteScreen";
 import { Ionicons } from "@expo/vector-icons";
+import { FavoritesProvider } from "./store/context/favoritesContext";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -41,30 +42,35 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#fff",
-            },
-            headerTintColor: "#24180f",
-            contentStyle: {
-              backgroundColor: "#fff",
-            },
-          }}
-          initialRouteName="MealsCategories"
-        >
-          <Stack.Screen
-            name="MealsCategories"
-            component={TabsNavigator}
-            options={{
-              headerShown: false,
+      <FavoritesProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#fff",
+              },
+              headerTintColor: "#24180f",
+              contentStyle: {
+                backgroundColor: "#fff",
+              },
             }}
-          />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+            initialRouteName="MealsCategories"
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={TabsNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MealsOverview"
+              component={MealsOverviewScreen}
+            />
+            <Stack.Screen name="MealDetails" component={MealDetailsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesProvider>
       <StatusBar style="dark" />
     </>
   );
