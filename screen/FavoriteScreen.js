@@ -6,10 +6,7 @@ import { MEALS } from "../data/mockData";
 
 const FavoriteScreen = () => {
   const favoritesMealsContext = useContext(FavoritesContext);
-
-  const favoriteMeals = MEALS.filter((meal) =>
-    favoritesMealsContext.favoritesIds.includes(meal.id)
-  );
+  const favoriteMeals = favoritesMealsContext.favoritesMeals;
 
   return (
     <View>

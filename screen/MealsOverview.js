@@ -22,7 +22,11 @@ const MealsOverviewScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <MealsList data={displayedMeals} categoryColor={categoryColor} />
+      <MealsList
+        data={displayedMeals}
+        categoryColor={categoryColor}
+        isFavorite={false}
+      />
     </View>
   );
 };

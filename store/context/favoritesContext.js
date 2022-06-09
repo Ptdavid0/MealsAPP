@@ -1,34 +1,39 @@
 import React, { createContext, useState } from "react";
 
 export const FavoritesContext = createContext({
-  favoritesIds: [],
-  addFavorite: (id) => {},
+  favoritesMeals: [],
+  addFavorite: (item) => {},
   removeFavorite: (id) => {},
 });
 
 export const FavoritesProvider = ({ children }) => {
-  const [favoritesIds, setFavoritesIds] = useState([]);
+  const [favoritesMeals, setFavoritesMeals] = useState([]);
 
-  const addFavorite = (id) => {
-    setFavoritesIds((prevFavoritesIds) => {
-      if (prevFavoritesIds.includes(id)) {
+  const addFavorite = (item) => {
+    setFavoritesMeals((prevFavoritesIds) => {
+      if (prevFavoritesIds.includes(item.id)) {
         return prevFavoritesIds;
       } else {
-        return [...prevFavoritesIds, id];
+        return [...prevFavoritesIds, item];
       }
     });
   };
 
   const removeFavorite = (id) => {
-    setFavoritesIds((prevFavoritesIds) => {
-      return prevFavoritesIds.filter((item) => item !== id);
+    setFavoritesMeals((prevFavoritesIds) => {
+      return prevFavoritesIds.filter((item) => item.id !== id);
     });
   };
 
+  const getFavoriteMealsIds = () => {
+    return favoritesMeals.map((meal) => meal.id);
+  };
+
   const value = {
-    favoritesIds,
+    favoritesMeals,
     addFavorite,
     removeFavorite,
+    getFavoriteMealsIds,
   };
 
   return (

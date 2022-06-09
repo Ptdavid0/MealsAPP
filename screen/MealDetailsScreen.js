@@ -19,13 +19,18 @@ const MealDetailsScreen = ({ route, navigation }) => {
   } = route.params.item;
   const { categoryColor } = route.params;
 
-  const mealIsFavorite = favoritesMealsContext.favoritesIds.includes(id);
+  const mealIsFavorite = favoritesMealsContext
+    .getFavoriteMealsIds()
+    .includes(id);
 
   const changeFavoriteStatusHandler = () => {
     if (mealIsFavorite) {
       favoritesMealsContext.removeFavorite(id);
     } else {
-      favoritesMealsContext.addFavorite(id);
+      favoritesMealsContext.addFavorite({
+        ...route.params.item,
+        color: categoryColor,
+      });
     }
   };
 

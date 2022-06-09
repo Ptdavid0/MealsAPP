@@ -7,7 +7,10 @@ const MealsList = ({ data, categoryColor }) => {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <MealItem item={item} categoryColor={categoryColor} />
+        <MealItem
+          item={item}
+          categoryColor={categoryColor ? categoryColor : item.color}
+        />
       )}
       keyExtractor={(item) => item.id}
     />
