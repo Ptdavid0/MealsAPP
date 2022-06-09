@@ -33,6 +33,10 @@ export default function App() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="star" size={size} color={color} />
             ),
+            headerStyle: {
+              backgroundColor: "#bb00ff",
+            },
+            headerTintColor: "#ffffff",
           }}
         />
       </Tab.Navigator>
